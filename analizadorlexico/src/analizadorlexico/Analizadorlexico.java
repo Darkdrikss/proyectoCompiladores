@@ -1,5 +1,5 @@
 
-package lexicalanalyzer;
+package analizadorlexico;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LexicalAnalyzer {
+public class Analizadorlexico {
 
     /**
      * @param args the command line arguments
