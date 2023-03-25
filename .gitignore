@@ -24,6 +24,3 @@ hs_err_pid*
 replay_pid*
 /analizadorlexico/nbproject/private/
 
-nbproject/
-build.xml
-manifest.mf
