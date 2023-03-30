@@ -39,9 +39,9 @@ public class Analizadorlexico {
         while (reader.hasNextLine()) {
             String str = reader.nextLine(); //Reads the lines
             if (!(str.length() == 0)) {     //If no blank lines detected, then continue
-                String [] strSplit = str.trim().split("\\s+|\\s*,\\s*|\\;+|\\\"+|\\:+|\\[+|\\]+");     //Regex for splitting the code into lexemes          
+                String [] strSplit = str.trim().split("\\s+|\\s*,\\s*|\\;+|\\\"+|\\:+|\\[+|\\]+");     //Expresión regular para dividir el código en lexemas         
                 
-                List <String> list = Arrays.asList(strSplit);       //Save the lexeme array into a Container List
+                List <String> list = Arrays.asList(strSplit);       //Guardar la matriz de lexemas en una lista de contenedores
                 lines.addAll(list);                                 //Add the Container List to the ArrayList or HashTable
             }
         }
