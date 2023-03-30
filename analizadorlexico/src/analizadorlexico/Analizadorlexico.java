@@ -28,25 +28,25 @@ public class Analizadorlexico {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException {        
-        //Take code input from file
+     
         Scanner reader = new Scanner(new File("input.txt"));        
         
-        //ArrayList for lexemes and HashTable for the Symbol Table
+        //ArrayList para lexemas y HashTable para la tabla de símbolos
         ArrayList<String> lines = new ArrayList<>();
         Map<String, List<String>> symbolTable = new HashMap<String, List<String>>();
         
-        //Reads every line and then splits everything into lexemes
+        //Lee cada línea y luego divide todo en lexemas
         while (reader.hasNextLine()) {
-            String str = reader.nextLine(); //Reads the lines
-            if (!(str.length() == 0)) {     //If no blank lines detected, then continue
+            String str = reader.nextLine(); 
+            if (!(str.length() == 0)) {     
                 String [] strSplit = str.trim().split("\\s+|\\s*,\\s*|\\;+|\\\"+|\\:+|\\[+|\\]+");     //Expresión regular para dividir el código en lexemas         
                 
                 List <String> list = Arrays.asList(strSplit);       //Guardar la matriz de lexemas en una lista de contenedores
-                lines.addAll(list);                                 //Add the Container List to the ArrayList or HashTable
+                lines.addAll(list);                                 //Agregar la lista de contenedores al ArrayList o HashTable.
             }
         }
         
-        //Add values from ArrayList to HashMap Key keywords
+        //Agregar valores desde un ArrayList a la clave de un HashMap mediante palabras clave.
         List<String> keywords = new ArrayList<String>();        
         if (lines.contains("int") || lines.contains("float") || lines.contains("if") || lines.contains("else")) {         
             if (lines.contains("int")) {
@@ -71,10 +71,10 @@ public class Analizadorlexico {
             }            
         }        
         
-        //Put the ArrayLists in HashMap for particular Keys
+       
         symbolTable.put("Keywords", keywords);
         
-        //Add values from ArrayList to HashMap Key keywords
+     
         List<String> operators = new ArrayList<String>();        
         if (lines.contains("=") || lines.contains("-") || lines.contains("+") || lines.contains("*")) {         
             if (lines.contains("=")) {
@@ -99,10 +99,10 @@ public class Analizadorlexico {
             }            
         }        
         
-        //Put the ArrayLists in HashMap for particular Keys
+        
         symbolTable.put("Math Operators", operators); 
         
-        //Add values from ArrayList to HashMap Key keywords
+     
         List<String> logical = new ArrayList<String>();        
         if (lines.contains("<") || lines.contains(">") || lines.contains("<=") || lines.contains(">=")) {         
             if (lines.contains("<")) {
@@ -127,24 +127,24 @@ public class Analizadorlexico {
             }            
         }        
         
-        //Put the ArrayLists in HashMap for particular Keys
+
         symbolTable.put("Logical Operators", logical);          
         
-        //Convert the array list into an array
+    
         String [] linesArray = lines.toArray(new String [0]);
         
-        //Add values from ArrayList to HashMap Key keywords
+      
         List<String> digits = new ArrayList<String>();     
         for (int count = 0;  count < linesArray.length; count++) {
-            if (linesArray[count].matches("\\d+|\\d+\\.\\d+")) {  //Use regex here for numbers                 
+            if (linesArray[count].matches("\\d+|\\d+\\.\\d+")) {                  
                 digits.add(linesArray[count]);                       
             }        
         }
         
-        //Put the ArrayLists in HashMap for particular Keys
+ 
         symbolTable.put("Numerical Values", digits);
         
-        //Add values from ArrayList to HashMap Key keywords
+     
         List<String> identifiers = new ArrayList<String>();     
         for (int count = 0;  count < linesArray.length; count++) {
             if (linesArray[count].matches("\\w+") && !linesArray[count].matches("\\d+") && !linesArray[count].matches("int|float|if|else")) {  //Use regex here for variables  
@@ -154,29 +154,29 @@ public class Analizadorlexico {
             }        
         }
         
-        //Put the ArrayLists in HashMap for particular Keys
+       
         symbolTable.put("Identifiers", identifiers);
         
-        //Add values from ArrayList to HashMap Key keywords
+        //Agregar valores de ArrayList a HashMap Palabras clave clave
         List<String> others = new ArrayList<String>();     
         for (int count = 0;  count < linesArray.length; count++) {
-            if (linesArray[count].matches("\\(|\\)|\\{|\\}")) {  //Use regex here for variables  
+            if (linesArray[count].matches("\\(|\\)|\\{|\\}")) {  
                 if (!identifiers.contains(linesArray[count])) {
                     others.add(linesArray[count]);    
                 }
             }        
         }
         
-        //Put the ArrayLists in HashMap for particular Keys
+        //Poner ArrayLists en HashMap para claves particulares
         symbolTable.put("Others", others);
         
-        //Prints the ArrayList
+        //imprime ArrayList
         System.out.print("The Lexemes: ");
         System.out.println(lines);  
         
         System.out.println();
         
-        //Prints the Symbol Table
+        //Imprime la tabla de símbolos
         for (Map.Entry<String, List<String>> entry : symbolTable.entrySet()) {
             String key = entry.getKey();
             List<String> values = entry.getValue();
